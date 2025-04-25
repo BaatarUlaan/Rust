@@ -9,6 +9,7 @@ fn main() {
 
     loop {
         println!("Guess a number!");
+        guess=String::new();
         stdin().read_line(&mut guess).expect("Failed to read line");
         println!("You guessed: {}", guess);
         let guess: u32 = match guess.trim().parse(){
@@ -23,7 +24,7 @@ fn main() {
         match guess.cmp(&target) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => println!("You win!"),
+            Ordering::Equal => {println!("You win!"); break},
         }
     }
 }
