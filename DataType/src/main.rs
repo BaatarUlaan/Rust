@@ -19,4 +19,10 @@ fn main() {
     let array:[i32;4] = [1,2,3,4];
     let array2=[3;5]; //3重复5次
     
+    
+    let a:i32=4;
+    let b:u32=3;
+    let c=a+b;  //Error!
+    println!("a:{} b:{}",a,b);
+    
 }
