@@ -26,4 +26,8 @@ fn exmaple_for_ic(a:i32){
         println!("Zero");
     }
     
+    //Rust取缔了三元表达式（ternary expression）
+    let condition=true;
+    let number=if condition{a}else { -a };
+    
 }
