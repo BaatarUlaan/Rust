@@ -1,6 +1,11 @@
 fn main() {
-    println!("Hello, world!");
-    your_first_function();
+    //println!("Hello, world!");
+    //your_first_function();
+    
+    //无法通过编译 if后面的值一定是布尔值
+    let a=1;
+    let b=if a {0} else {1};
+    println!("{b}");
 }
 
 fn your_first_function() {
