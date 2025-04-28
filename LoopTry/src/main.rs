@@ -19,7 +19,9 @@ fn main() {
     
     let mut z=1;
     let w= while z==3{
-        break 5;
+        
         z+=1;
-    }
+        break;
+    };
+    println!("{:?}",w);
 }
