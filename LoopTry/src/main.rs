@@ -15,4 +15,11 @@ fn main() {
         }
         println!("Reach?");
     }
+    
+    
+    let mut z=1;
+    let w= while z==3{
+        break 5;
+        z+=1;
+    }
 }
