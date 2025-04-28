@@ -22,7 +22,10 @@ fn main() {
     
     let a:i32=4;
     let b:u32=3;
-    let c=a+b;  //Error!
+    //let c=a+b;  //Error!
     println!("a:{} b:{}",a,b);
     
+    const EXAMPLE:f32=234.22222222;
+    println!("{}",EXAMPLE);
+    println!("{:.2}",EXAMPLE);
 }
