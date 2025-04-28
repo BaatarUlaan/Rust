@@ -24,4 +24,13 @@ fn main() {
         break;
     };
     println!("{:?}",w);
+    
+    
+    let arr=[1,2,3];
+    for a in arr{
+        println!("{}",a);
+    }
+    for a in (1..4){
+        println!("{}",a);
+    }
 }
