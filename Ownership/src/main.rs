@@ -12,7 +12,7 @@ fn main() {
     if C{
         b=a;
     }
-    println!("{}",a);
+    //println!("{}",a);
 }
 
 fn change(mut s:String)->String{
