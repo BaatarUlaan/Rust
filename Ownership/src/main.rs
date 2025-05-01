@@ -1,21 +1,11 @@
 
-fn main() { 
-    let s=String::from("Dajiadouzai nali liaotian a?");
-    let result=change(s);
-    println!("{}",result);
+fn main() {
+    let mut s = String::from("hello");
     
     
-    
-    let a=String::from("have a try");
-    let mut b=String::from("this is b");
-    const C:bool=false;
-    if C{
-        b=a;
-    }
-    //println!("{}",a);
-}
+    //你不能在已经存在一个可变借用（&mut s）的同时，再创建对 s 的不可变借用（例如直接使用 s 本身）。
+    let r1 = &mut s;
+    //let r2 = &mut s;
 
-fn change(mut s:String)->String{
-    s.push_str("haha");
-    s
+    println!("{}, {}", r1, s);
 }
