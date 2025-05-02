@@ -9,3 +9,8 @@ fn main() {
 
     println!("{}, {}", r1, s);
 }
+
+fn try_the_case<'a>()-> &'a String{
+    let s = String::from("hello");
+    &s
+}
