@@ -7,3 +7,6 @@ fn a(a:&String)->&String
 
 
 autoDeref Rust的自动解引用实在是令人惊叹，这也太智能了
+
+mut是变量的属性，不是值的属性，当vec所有权转移时，可变性不会跟着转移
+let mut a=vec![1,2,3]
