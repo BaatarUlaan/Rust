@@ -1,14 +1,22 @@
+use std::cmp::max;
+
 fn main() {
-    let mut exa=vec![1,2,3,4,5];
-    exa=heapify(exa);
+
+    //keep heapified
+    let mut exa=vec![1,2,3,4];
+    heapify(&mut exa);
     println!("{:?}",exa);
 
     let mut exa=vec![0];
-    exa=heapify(exa);
+    heapify(&mut exa);
     println!("{:?}",exa);
 
+    //Sort
+    let mut exa=vec![5,4,3,2,1];
+    exa=heap_sort(exa);
+    println!("{:?}",exa);
 }
-fn node_hipify(parent:usize,mut data:Vec<isize>)->Vec<isize>{
+fn node_hipify(parent:usize,mut data:&mut [isize]){
     let child1=2*parent+1;
     let child2=2*parent+2;
     let mut largest=parent;
@@ -26,19 +34,60 @@ fn node_hipify(parent:usize,mut data:Vec<isize>)->Vec<isize>{
 
 
     //trace the sunk "parent" node
-    if largest==child1{data=node_hipify(child1,data);}
-    if largest==child2{data=node_hipify(child2,data);}
+    if largest==child1{
+        node_hipify(child1,data);
+        //println!("{:?}",data);
+    }
+    if largest==child2{
+        node_hipify(child2,data);
+        //println!("{:?}",data);
+    }
 
-    data
 }
-fn heapify(mut a :Vec<isize>) ->Vec<isize>{
+fn heapify(a :&mut [isize]) {
     //the first parent node, from down to up
     let begin=((a.len() as f64-0.5)/2.0).floor() as usize;
     for i in (0..=begin).rev(){
-        a=node_hipify(i,a);
+        node_hipify(i,a);
     }
-    a
+
 }
 
+fn sink_top_after_heapify(a:&mut [isize]){
+    let mut parent=0;
+    let mut largest=parent;
+
+    loop{
+        let child1=2*parent+1;
+        let child2=2*parent+2;
+
+        if child1<a.len()&&a[child1]>a[largest]{
+            largest=child1;
+        }
+        if child2<a.len()&&a[child2]>a[largest]{
+            largest=child2;
+
+        }
+
+        if largest!=parent {
+            a.swap(largest,parent);
+            parent=largest;
+        }
+        else{break;}
+
+    }
 
 
+}
+fn heap_sort(mut data :Vec<isize>) ->Vec<isize>{
+    heapify( &mut data); //from down to up     NlogN
+    for i in (0..data.len()).rev(){    //NlogN
+        println!("Before swap{:?} i={}", data,i);
+        data.swap(0, i);
+        println!("{:?} i={}", data,i);
+        sink_top_after_heapify(&mut data[0..i]);//i must be excluded
+        println!("{:?}", data);
+        //because already heapified, only need to sink vec[0]
+    }
+    data
+}
