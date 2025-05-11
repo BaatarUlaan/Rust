@@ -1,5 +1,12 @@
 fn main() {
-    println!("Hello, world!");
+    let a=create_fstruct(String::from("first account"));
+    let b =Fstruct{
+        username:String::from("second account"),
+        ..a
+    };
+    
+    
+    
 }
 
 fn create_fstruct(username:String)->Fstruct{
