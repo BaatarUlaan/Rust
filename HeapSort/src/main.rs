@@ -79,14 +79,14 @@ fn sink_top_after_heapify(a:&mut [isize]){
 
 
 }
-fn heap_sort(mut data :Vec<isize>) ->Vec<isize>{
+fn heap_sort(mut data :Vec<isize>) ->Vec<isize>{ //must not use heapify in loop
     heapify( &mut data); //from down to up     NlogN
     for i in (0..data.len()).rev(){    //NlogN
-        println!("Before swap{:?} i={}", data,i);
+        //println!("Before swap{:?} i={}", data,i);
         data.swap(0, i);
-        println!("{:?} i={}", data,i);
+        //println!("{:?} i={}", data,i);
         sink_top_after_heapify(&mut data[0..i]);//i must be excluded
-        println!("{:?}", data);
+        //println!("{:?}", data);
         //because already heapified, only need to sink vec[0]
     }
     data
