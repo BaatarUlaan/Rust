@@ -7,16 +7,19 @@ fn main() {}
 
 fn quick_sort_without_recursion(arr: &mut [i32]) {
     let mut event_list:Vec<(usize,usize)>=Vec::new();
+
+    if arr.len()<1 {return;}  //prevent null array, prevent index overflow
     event_list.push((0,arr.len()-1));
+    
     
     while event_list.len() > 0 {
         let (x,y) = event_list.remove(0);
-        let mid=partition(&mut arr[x..=y],y-x);//notice y-x SHOULD NOT USE Y
-        
+        let mut mid=partition(&mut arr[x..=y],y-x);//notice y-x SHOULD NOT USE Y
+        mid+=x; //adjust mid, for example [0,1,2,3], slice[1,2] as input of partition, then mid=1, but in original array, mid=1+1=2 
         if mid+1<=y { 
             event_list.push((mid+1,y)); 
         }
-        if x>=mid-1{
+        if x+1<=mid{
             event_list.push((x,mid-1));
         }
         
