@@ -5,7 +5,8 @@ fn quick_sort( arr: &mut [i32])  {
     let mid;
     
     if arr.len()> 1 {
-        let pivot = arr.len() - 1;
+        let pivot = arr.len() - 1; 
+        //在二分的时候会产生空切片，如果这个时候把这行放在外面，那么就会形成0-1 attempt to subtract with overflow 错误
         mid = partition(arr, pivot);
         //println!("{:#?}pivot is {}", arr,pivot);
         quick_sort(&mut arr[0..mid]);
