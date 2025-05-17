@@ -1,20 +1,27 @@
 fn main() {}
 
 //======================quick sort
-fn quick_sort(arr: &mut [i32]) {
-    if arr.len() > 1 {
-        let mid = partition(arr); // partition 现在自己决定 pivot 的位置
+fn quick_sort( arr: &mut [i32])  {
+    let mid;
+    
+    if arr.len()> 1 {
+        let pivot = arr.len() - 1;
+        mid = partition(arr, pivot);
+        //println!("{:#?}pivot is {}", arr,pivot);
         quick_sort(&mut arr[0..mid]);
+        //println!("{:#?}pivot is {} mid is {}", arr,pivot,mid);
         quick_sort(&mut arr[mid + 1..]);
     }
+    
+    
 }
 
-//choose the last number as pivot (within the current slice)
-fn partition(arr: &mut [i32]) -> usize {
-    let pivot_index = arr.len() - 1;
-    let pivot = arr[pivot_index];
+//choose the last number as pivot
+
+fn partition(arr: &mut [i32], where_is_pivot: usize) ->  usize {
     let mut i = 0;
     let size = arr.len();
+    let pivot = arr[where_is_pivot];
 
     for j in 0..size - 1 {
         if arr[j] > pivot {
@@ -24,7 +31,7 @@ fn partition(arr: &mut [i32]) -> usize {
             i += 1;
         }
     }
-    swap(arr, i, pivot_index);
+    swap(arr, i, where_is_pivot); //j==size
     i
 }
 
@@ -33,6 +40,7 @@ fn swap(arr: &mut [i32], i: usize, j: usize) {
     arr[i] = arr[j];
     arr[j] = temp;
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -41,7 +49,7 @@ mod tests {
     fn partition_test() {
         let mut a = vec![5, 6, 0, 1, 2];
         let expect =  2;
-        assert_eq!(expect, partition(&mut a));
+        assert_eq!(expect, partition(&mut a, 4));
     }
     #[test]
     fn quick_sort_test() {
