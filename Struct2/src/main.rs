@@ -1,32 +1,19 @@
-#[derive(Debug)]
-#[derive(Clone)] //Copy 依赖Clone
-struct Ren{
-    chang:u64,
-    gao:u64,
-    zhong:u64,
-    mingzi:String
+#[derive(Clone)]
+struct A {
+    x: u32,
 }
 
-impl Ren{
-    fn zengchangshu(&mut self){
-        self.chang+=10;
-    }
-    fn zhuoai(mut self)->Self{
-        self.zhong-=20;
-        self
-    }
+#[derive(Copy, Clone)]
+struct B {
+    x: u32,
 }
+
 fn main() {
-    let mut jia=Ren{
-        chang:64,
-        gao:64,
-        zhong:64,
-        mingzi:String::from("GaGa")
-    };
-    Ren::zengchangshu(&mut jia);
-    println!("{:#?}",jia);
-    jia.zengchangshu();
-    
-    println!("{:#?}",jia);
-    
+    let a1 = A { x: 1 };
+    let a2 = a1;            // ✅ 所有权移动，没有Copy
+    let a3 = a1.clone();    // ❌ a1所有权已然移动
+
+    let b1 = B { x: 1 };
+    let b2 = b1;            // ✅ 自动复制（Copy）
+    let b3 = b1.clone();    // ✅ 当然也可以手动 clone（但没必要）
 }
